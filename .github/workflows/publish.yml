@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false
 
       - name: Install dependencies
@@ -31,9 +30,7 @@ jobs:
         run: npm run build
 
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_SECRET }}
-        run: npm publish --provenance --access public
+        run: npm publish --access public
 
   publish-jsr:
     name: Publish to jsr
