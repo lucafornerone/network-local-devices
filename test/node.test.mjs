@@ -9,7 +9,6 @@ describe('_v4LocalDevices', () => {
 
   before(async () => {
     devices = await v4LocalDevices(2, true);
-    console.log(devices);
   });
 
   it('should be defined', () => {
