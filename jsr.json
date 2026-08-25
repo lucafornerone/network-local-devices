@@ -1,0 +1,12 @@
+{
+  "name": "@lucafornerone/network-local-devices",
+  "exports": "./index.ts",
+  "license": "MIT",
+  "version": "1.0.0",
+  "publish": {
+    "include": ["LICENSE", "README.md", "index.ts", "src/**/*.ts"]
+  },
+  "imports": {
+    "network-ip-list": "jsr:@lucafornerone/network-ip-list@2.3.1"
+  }
+}

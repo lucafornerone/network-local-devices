@@ -1,0 +1,63 @@
+import { SpawnOptions, spawn } from 'node:child_process';
+import { platform } from 'node:os';
+import { platformFromRuntimeOs } from '../common.ts';
+import { IRuntime, Platform, Runtime } from '../types.ts';
+
+export class NodeRuntime implements IRuntime {
+  /**
+   * Spawns a command in the Node.js runtime and returns its standard output as a string.
+   *
+   * @param {string[]} cmds - The command and its arguments to execute.
+   * @param {string} ips - A newline-separated list of IP addresses passed to the process stdin.
+   * @returns {Promise<string>} A promise that resolves to the trimmed standard output of the command.
+   * @throws {NodeParsingCommandErrorError} If the command execution fails.
+   */
+  async spawnCommand(cmds: string[], ips: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      // ignore stderr
+      const spawnOptions: SpawnOptions = { stdio: ['pipe', 'pipe', 'ignore'] };
+      const process = spawn(cmds[0], cmds.slice(1), spawnOptions);
+      if (process.stdin) {
+        process.stdin.write(ips);
+        process.stdin.end();
+      }
+
+      let output = '';
+      if (process.stdout) {
+        process.stdout.on('data', (data) => {
+          // concat output
+          output += data.toString();
+        });
+      }
+
+      process.on('error', () => {
+        reject(new NodeParsingCommandError());
+      });
+
+      process.on('close', (code) => {
+        if (code !== 0) {
+          reject(new NodeParsingCommandError());
+        }
+        // command correctly executed
+        resolve(output.trim());
+      });
+    });
+  }
+
+  /**
+   * Determines and returns the current platform for the Node.js runtime.
+   *
+   * @returns {Platform} The detected platform corresponding to the Node.js runtime.
+   * @throws {PlatformNotSupportedError} If the platform is not supported.
+   */
+  platform(): Platform {
+    return platformFromRuntimeOs(Runtime.Node, platform());
+  }
+}
+
+class NodeParsingCommandError extends Error {
+  constructor() {
+    super('Error while parsing node command');
+    this.name = 'NodeParsingCommandError';
+  }
+}
