@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "network-ip-list": "jsr:@lucafornerone/network-ip-list@2.3.1"
+  },
+  "compilerOptions": {
+    "types": ["npm:@types/bun"]
+  },
+  "minimumDependencyAge": 0,
+  "nodeModulesDir": "none"
+}

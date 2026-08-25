@@ -1,0 +1,56 @@
+{
+  "name": "network-local-devices",
+  "version": "1.0.0",
+  "description": "Effortlessly discover all connected devices to the local network",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "author": "Luca Fornerone",
+  "keywords": [
+    "network",
+    "ipv4",
+    "local-devices"
+  ],
+  "type": "module",
+  "module": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha test/node.test.mjs --timeout 30000",
+    "prepare": "husky",
+    "pretest": "npm run build"
+  },
+  "lint-staged": {
+    "**/*": "biome check --write"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucafornerone/network-local-devices.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lucafornerone/network-local-devices/issues"
+  },
+  "homepage": "https://github.com/lucafornerone/network-local-devices#readme",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "network-ip-list": "2.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.10",
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "@types/bun": "^1.4.0",
+    "@types/node": "^26.2.0",
+    "chai": "^6.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "mocha": "^11.8.0",
+    "typescript": "^7.0.2"
+  }
+}
