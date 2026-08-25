@@ -8,7 +8,7 @@ import { isMac } from './helpers.mjs';
 let devices: NetworkLocalDevice[];
 
 Deno.test.beforeAll(async () => {
-  devices = await deadline(v4LocalDevices(2, true), 45_000);
+  devices = await deadline(v4LocalDevices(2, true), 30_000);
 });
 
 Deno.test('_v4LocalDevices: should be defined', () => {
