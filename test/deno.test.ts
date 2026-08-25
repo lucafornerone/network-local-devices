@@ -1,10 +1,14 @@
 import { assertEquals, assertExists, assertGreater } from 'jsr:@std/assert';
 import { isIPv4 } from 'node:net';
 import { v4LocalDevices } from '../index.ts';
+import { NetworkLocalDevice } from '../src/types.ts';
 import { isMac } from './helpers.mjs';
 
-const devices = await v4LocalDevices(2, true);
-console.log(devices);
+let devices: NetworkLocalDevice[];
+
+Deno.test.beforeAll(async () => {
+  devices = await v4LocalDevices(2, true);
+});
 
 Deno.test('_v4LocalDevices: should be defined', () => {
   assertExists(devices);
