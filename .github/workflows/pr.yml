@@ -33,7 +33,7 @@ jobs:
         run: bun install
 
       - name: Run tests
-        run: bun test test/bun.test.ts --timeout 30000
+        run: bun test test/bun.test.ts --timeout ${{ vars.TEST_TIMEOUT }}
 
   run-deno-tests:
     name: Run Deno tests
@@ -53,7 +53,9 @@ jobs:
           deno-version: latest
 
       - name: Run tests
-        run: deno test test/deno.test.ts --allow-run
+        run: deno test test/deno.test.ts --allow-run --allow-env
+        env:
+          CI_TIMEOUT: ${{ vars.TEST_TIMEOUT }}
 
   run-node-tests:
     name: Run Node tests
@@ -77,7 +79,7 @@ jobs:
         run: npm install
 
       - name: Run tests
-        run: npm run test
+        run: npm run test -- --timeout ${{ vars.TEST_TIMEOUT }}
 
   biome:
     name: Check all files
