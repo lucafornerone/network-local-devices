@@ -1,6 +1,6 @@
 {
   "name": "network-local-devices",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Effortlessly discover all connected devices to the local network",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
