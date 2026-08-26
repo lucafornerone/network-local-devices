@@ -6,9 +6,19 @@ import { NetworkLocalDevice } from '../src/types.ts';
 import { isMac } from './helpers.mjs';
 
 let devices: NetworkLocalDevice[];
+let timeout: number | undefined;
+const hasEnv = await Deno.permissions.query({ name: 'env' });
+if (hasEnv && hasEnv.state === 'granted') {
+  const envTimeout: string | undefined = Deno.env.get('CI_TIMEOUT');
+  timeout = envTimeout ? +envTimeout : undefined;
+}
 
 Deno.test.beforeAll(async () => {
-  devices = await deadline(v4LocalDevices(2, true), 30_000);
+  if (timeout) {
+    devices = await deadline(v4LocalDevices(2, true), timeout);
+  } else {
+    devices = await v4LocalDevices(2, true);
+  }
 });
 
 Deno.test('_v4LocalDevices: should be defined', () => {
