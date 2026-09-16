@@ -14,10 +14,11 @@ if (hasEnv && hasEnv.state === 'granted') {
 }
 
 Deno.test.beforeAll(async () => {
+  const options = { timeout: 2, currentIp: true };
   if (timeout) {
-    devices = await deadline(v4LocalDevices(2, true), timeout);
+    devices = await deadline(v4LocalDevices(options), timeout);
   } else {
-    devices = await v4LocalDevices(2, true);
+    devices = await v4LocalDevices(options);
   }
 });
 

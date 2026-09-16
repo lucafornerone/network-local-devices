@@ -57,7 +57,7 @@ npm install network-local-devices
 import { v4LocalDevices } from 'network-local-devices';
 
 (async () => {
-  // Get all connected devices to the local network
+  // Get all connected devices to the local network (default timeout is 3 seconds)
   const devices = await v4LocalDevices();
   console.log(devices);
   /*
@@ -76,7 +76,7 @@ import { v4LocalDevices } from 'network-local-devices';
   */
 
   // Search with a 5 seconds timeout and include current IP
-  const devicesWithCurrentIp = await v4LocalDevices(5, true);
+  const devicesWithCurrentIp = await v4LocalDevices({ timeout: 5, currentIp: true });
   console.log(devicesWithCurrentIp);
   /*
   [

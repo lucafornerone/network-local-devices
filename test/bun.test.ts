@@ -8,7 +8,7 @@ describe('_v4LocalDevices', () => {
   let devices: NetworkLocalDevice[];
 
   beforeAll(async () => {
-    devices = await v4LocalDevices(2, true);
+    devices = await v4LocalDevices({ timeout: 2, currentIp: true });
   });
 
   it('should be defined', () => {
