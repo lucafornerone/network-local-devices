@@ -1,6 +1,6 @@
 {
   "imports": {
-    "network-ip-list": "jsr:@lucafornerone/network-ip-list@2.3.1"
+    "network-ip-list": "jsr:@lucafornerone/network-ip-list@2.3.2"
   },
   "compilerOptions": {
     "types": ["npm:@types/bun"]

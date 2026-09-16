@@ -7,6 +7,6 @@
     "include": ["LICENSE", "README.md", "index.ts", "src/**/*.ts"]
   },
   "imports": {
-    "network-ip-list": "jsr:@lucafornerone/network-ip-list@2.3.1"
+    "network-ip-list": "jsr:@lucafornerone/network-ip-list@2.3.2"
   }
 }
