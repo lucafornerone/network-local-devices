@@ -15,17 +15,18 @@ import { NetworkLocalDevice } from './src/types.ts';
  * console.log(devices); // [ { ip: '192.168.1.5', mac: '00:1a:2b:3c:4d:5e', name: 'my-laptop' } ]
  * ```
  *
- * @param timeout - The timeout in seconds for checking each device's availability.
- * @param currentIp - Whether to include the current device's own IP address in the network scan.
+ * @param options - The configuration options for the network scan.
+ * @param options.timeout - The timeout in seconds for checking each device's availability. Default is `3`.
+ * @param options.currentIp - Whether to include the current device's own IP address in the network scan. Default is `false`.
  * @returns A promise that resolves to an array of discovered local network devices:
  * - `ip`: The IPv4 address of the discovered device.
  * - `mac`: The MAC address of the device (optional, included if found).
  * - `name`: The resolved hostname of the device (optional, included if found).
  */
-export async function v4LocalDevices(
+export async function v4LocalDevices({
   timeout = 3,
-  currentIp = false
-): Promise<NetworkLocalDevice[]> {
+  currentIp = false,
+} = {}): Promise<NetworkLocalDevice[]> {
   const runtime = await currentRuntime();
   const platform = await currentPlatform(runtime);
 
