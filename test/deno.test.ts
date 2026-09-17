@@ -1,8 +1,7 @@
 import { assertEquals, assertExists, assertGreater } from 'jsr:@std/assert';
 import { deadline } from 'jsr:@std/async';
 import { isIPv4 } from 'node:net';
-import { v4LocalDevices } from '../index.ts';
-import { NetworkLocalDevice } from '../src/types.ts';
+import { NetworkLocalDevice, v4LocalDevices } from '../index.ts';
 import { isMac } from './helpers.mjs';
 
 let devices: NetworkLocalDevice[];
