@@ -31,6 +31,9 @@ export class WindowsPlatform implements IPlatform {
       ['powershell', '-NoProfile', '-Command', command],
       ips
     );
+    if (outputCommand === '') {
+      return [];
+    }
     const output = JSON.parse(outputCommand);
     return Array.isArray(output) ? output : [output];
   }
