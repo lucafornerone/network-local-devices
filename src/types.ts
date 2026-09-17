@@ -1,9 +1,3 @@
-export interface NetworkLocalDevice {
-  ip: string;
-  mac?: string;
-  name?: string;
-}
-
 export enum Platform {
   MacOS = 'darwin',
   Linux = 'linux',

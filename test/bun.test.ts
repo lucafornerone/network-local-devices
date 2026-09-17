@@ -1,7 +1,6 @@
 import { beforeAll, describe, expect, it } from 'bun:test';
 import { isIPv4 } from 'node:net';
-import { v4LocalDevices } from '../index.ts';
-import { NetworkLocalDevice } from '../src/types.ts';
+import { NetworkLocalDevice, v4LocalDevices } from '../index.ts';
 import { isMac } from './helpers.mjs';
 
 describe('_v4LocalDevices', () => {
