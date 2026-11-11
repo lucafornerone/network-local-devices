@@ -1,16 +1,13 @@
 import { NetworkElement, v4IpList } from 'network-ip-list';
 import { currentPlatform, currentRuntime } from './src/common.ts';
 
-/**
- * Represents a discovered local network device with its network details.
- *
- * @property {string} ip - The IPv4 address of the discovered device.
- * @property {string} [mac] - The MAC address of the device (optional, included if found).
- * @property {string} [name] - The resolved hostname of the device (optional, included if found).
- */
+/** Details of a device found on the local network. */
 export interface NetworkLocalDevice {
+  /** IPv4 address of the discovered device. */
   ip: string;
+  /** MAC address of the device (included if found). */
   mac?: string;
+  /** Resolved hostname of the device (included if found). */
   name?: string;
 }
 
